@@ -13,16 +13,15 @@ const validateToken = (req: Request, res: Response, next: NextFunction) => {
         if (decode) {
           next();
         } else {
-          const error: Error = new Error("login field, pleace try again");
-          next(error);
+          return res
+            .status(401)
+            .send("you are un authrized to make this action");
         }
       } else {
-        const error: Error = new Error("login field, pleace try again");
-        next(error);
+        return res.status(401).send("you are un authrized to make this action");
       }
     } else {
-      const error: Error = new Error("login field, pleace try again");
-      next(error);
+      return res.status(401).send("you are un authrized to make this action");
     }
   } catch (err) {
     const error: Error = new Error("login field, pleace try again");

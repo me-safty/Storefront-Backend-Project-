@@ -4,7 +4,7 @@ import validateToken from "../../middleware/Authentication.midlleware";
 
 const orders: Router = express.Router();
 
-orders.get("/", handlers.index);
+orders.get("/", validateToken, handlers.index);
 orders.get("/:id", validateToken, handlers.show);
 orders.get(
   "/Current_Order_By_User/:id",

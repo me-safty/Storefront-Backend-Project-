@@ -68,6 +68,10 @@ describe("test user api endpoint", () => {
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(2);
     });
+
+    it("test index method with un authrize user expect status to be 401", async () => {
+      await req.get("/api/users/").expect(401);
+    });
   });
   describe("test show method", () => {
     it("expect show method to return users by id", async () => {

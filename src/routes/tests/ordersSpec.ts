@@ -95,6 +95,14 @@ describe("test orders api endpoint", () => {
         .send({} as Order)
         .expect(400);
     });
+
+    it("test create method with un authrize user expect status to be 401", async () => {
+      await req
+        .post("/api/orders/")
+        .set("Content-type", "application/json")
+        .send({} as Order)
+        .expect(401);
+    });
   });
 
   describe("test index method", () => {
@@ -104,6 +112,10 @@ describe("test orders api endpoint", () => {
         .set("Authorization", `Bearer ${token}`)
         .expect(200);
       expect(res.body.length).toBe(2);
+    });
+
+    it("test index method with un authrize user expect status to be 401", async () => {
+      await req.get("/api/orders/").expect(401);
     });
   });
 

@@ -70,6 +70,16 @@ describe("test product api endpoint", () => {
         } as Product)
         .expect(400);
     });
+
+    it("test create method with un authrize user expect status to be 401", async () => {
+      await req
+        .post("/api/products/")
+        .set("Content-type", "application/json")
+        .send({
+          category: product.category,
+        } as Product)
+        .expect(401);
+    });
   });
 
   describe("test index method", () => {

@@ -4,7 +4,7 @@ import validateToken from "../../middleware/Authentication.midlleware";
 
 const users: Router = express.Router();
 
-users.post("/", validateToken, handlers.create);
+users.post("/", handlers.create);
 users.get("/", validateToken, handlers.index);
 users.put("/", validateToken, handlers.update);
 users.get("/:id", validateToken, handlers.show);
